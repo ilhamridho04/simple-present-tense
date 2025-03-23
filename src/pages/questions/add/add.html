@@ -1,0 +1,139 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Questions</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">
+                        <router-link to="/"
+                            >{{ $t("labels.home") }}</router-link
+                        >
+                    </li>
+                    <li class="breadcrumb-item active">
+                        <router-link to="/"
+                            >{{ $t("labels.questionAdd")}}</router-link
+                        >
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Tambah Soal Baru</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <form @submit.prevent="addQuestion">
+                            <div class="form-group">
+                                <label for="question">Pertanyaan</label>
+                                <textarea
+                                    v-model="newQuestion.question"
+                                    id="question"
+                                    class="form-control"
+                                    placeholder="Masukkan pertanyaan"
+                                    required
+                                ></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="choice1">Pilihan 1</label>
+                                <input
+                                    v-model="newQuestion.choices[0]"
+                                    id="choice1"
+                                    class="form-control"
+                                    placeholder="Masukkan pilihan 1"
+                                    required
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="choice2">Pilihan 2</label>
+                                <input
+                                    v-model="newQuestion.choices[1]"
+                                    id="choice2"
+                                    class="form-control"
+                                    placeholder="Masukkan pilihan 2"
+                                    required
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="choice3">Pilihan 3</label>
+                                <input
+                                    v-model="newQuestion.choices[2]"
+                                    id="choice3"
+                                    class="form-control"
+                                    placeholder="Masukkan pilihan 3"
+                                    required
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="choice4">Pilihan 4</label>
+                                <input
+                                    v-model="newQuestion.choices[3]"
+                                    id="choice4"
+                                    class="form-control"
+                                    placeholder="Masukkan pilihan 4"
+                                    required
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="correctAnswer">Jawaban Benar</label>
+                                <select
+                                    v-model="newQuestion.correct_answer"
+                                    id="correctAnswer"
+                                    class="form-control"
+                                    required
+                                >
+                                    <option
+                                        v-for="(choice, index) in newQuestion.choices"
+                                        :key="index"
+                                        :value="choice"
+                                    >
+                                        {{ choice }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="level">Level</label>
+                                <input
+                                    type="number"
+                                    v-model="newQuestion.level"
+                                    id="level"
+                                    class="form-control"
+                                    min="1"
+                                    required
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="point">Poin</label>
+                                <input
+                                    type="number"
+                                    v-model="newQuestion.point"
+                                    id="point"
+                                    class="form-control"
+                                    min="1"
+                                    required
+                                />
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">
+                                Simpan Soal
+                            </button>
+                        </form>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+</section>

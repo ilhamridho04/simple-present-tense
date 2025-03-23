@@ -1,0 +1,87 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>{{ $t("labels.users") }}</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">
+                        <router-link to="/"
+                            >{{ $t("labels.home") }}</router-link
+                        >
+                    </li>
+                    <li class="breadcrumb-item active">
+                        {{ $t("labels.questionList") }}
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Daftar Soal</h3>
+                        <div class="ml-auto p-2">
+                            <a
+                                href="/question-add"
+                                class="btn btn-primary float-sm-right"
+                            >
+                                <i class="fas fa-book-open"></i> Tambah Soal
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="questionsTable" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Pertanyaan</th>
+                                    <th>Level</th>
+                                    <th>Poin</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    v-for="question in questions"
+                                    :key="question.id"
+                                >
+                                    <td>{{ question.question }}</td>
+                                    <td>{{ question.level }}</td>
+                                    <td>{{ question.point }}</td>
+                                    <td>
+                                        <button
+                                            class="btn btn-info btn-sm"
+                                            @click="viewQuestionDetail(question.id)"
+                                        >
+                                            Detail
+                                        </button>
+                                        <button
+                                            class="btn btn-danger btn-sm"
+                                            @click="deleteQuestion(question.id)"
+                                        >
+                                            Hapus
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>

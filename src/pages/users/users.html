@@ -1,0 +1,173 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>{{ $t("labels.users") }}</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">
+                        <router-link to="/"
+                            >{{ $t("labels.home") }}</router-link
+                        >
+                    </li>
+                    <li class="breadcrumb-item active">
+                        {{ $t("labels.users") }}
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Daftar Pengguna</h3>
+                        <div class="ml-auto p-2">
+                            <a
+                                href="/user-add"
+                                class="btn btn-primary float-sm-right"
+                            >
+                                <i class="fas fa-user-plus"></i> Tambah Pengguna
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table
+                            id="usersTable"
+                            class="table table-bordered table-striped"
+                        >
+                            <thead>
+                                <tr>
+                                    <th>Nis</th>
+                                    <th>Password</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="user in users" :key="user.id">
+                                    <td>{{ user.nis }}</td>
+                                    <td>{{ user.password }}</td>
+                                    <td>
+                                        <button
+                                            class="btn btn-danger btn-sm"
+                                            @click="deleteUser(user.id)"
+                                        >
+                                            Delete
+                                        </button>
+                                        <button
+                                            class="btn btn-info btn-sm"
+                                            @click="viewUserDetail(user.id)"
+                                        >
+                                            View
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- Modal Detail User -->
+<div
+    class="modal fade"
+    id="userDetailModal"
+    tabindex="-1"
+    aria-labelledby="userDetailModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userDetailModalLabel">
+                    Detail Pengguna
+                </h5>
+                <button
+                    type="button"
+                    class="close"
+                    @click="closeModal"
+                    aria-label="Close"
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <tr>
+                        <th>NIS</th>
+                        <td>{{ selectedUser.nis }}</td>
+                    </tr>
+                    <tr>
+                        <th>Role</th>
+                        <td>{{ selectedUser.role }}</td>
+                    </tr>
+                    <tr>
+                        <th>Terdaftar</th>
+                        <td>{{ selectedUser.created_at }}</td>
+                    </tr>
+                    <tr>
+                        <th>Login Terakhir</th>
+                        <td>{{ selectedUser.last_login }}</td>
+                    </tr>
+                </table>
+                <h5>Profil</h5>
+                <table class="table">
+                    <tr>
+                        <th>Nama Lengkap</th>
+                        <td>{{ selectedProfile.fullname }}</td>
+                    </tr>
+                    <tr>
+                        <th>Kelas</th>
+                        <td>{{ selectedProfile.class }}</td>
+                    </tr>
+                    <tr>
+                        <th>Desa</th>
+                        <td>{{ selectedProfile.village }}</td>
+                    </tr>
+                    <tr>
+                        <th>Kecamatan</th>
+                        <td>{{ selectedProfile.district }}</td>
+                    </tr>
+                    <tr>
+                        <th>Kabupaten</th>
+                        <td>{{ selectedProfile.regency }}</td>
+                    </tr>
+                    <tr>
+                        <th>Provinsi</th>
+                        <td>{{ selectedProfile.province }}</td>
+                    </tr>
+                    <tr>
+                        <th>Foto</th>
+                        <td>
+                            <img
+                                :src="selectedProfile.image"
+                                alt="Foto Profil"
+                                class="img-thumbnail"
+                                width="100"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Bio</th>
+                        <td>{{ selectedProfile.bio }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

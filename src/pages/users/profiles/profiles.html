@@ -1,0 +1,82 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>{{ $t("labels.users") }}</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">
+                        <router-link to="/"
+                            >{{ $t("labels.home") }}</router-link
+                        >
+                    </li>
+                    <li class="breadcrumb-item active">
+                        {{ $t("labels.users") }}
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Tambah Pengguna</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <form @submit.prevent="addUser">
+                            <div class="form-group">
+                                <label for="nis">NIS</label>
+                                <input
+                                    v-model="newUser.nis"
+                                    id="nis"
+                                    class="form-control"
+                                    placeholder="Masukkan NIS"
+                                    required
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input
+                                    v-model="newUser.password"
+                                    id="password"
+                                    type="password"
+                                    class="form-control"
+                                    placeholder="Masukkan Password"
+                                    required
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="role">Role</label>
+                                <select
+                                    v-model="newUser.role"
+                                    id="role"
+                                    class="form-control"
+                                    required
+                                >
+                                    <option value="">Pilih Role</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="siswa">Siswa</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-2">
+                                Simpan
+                            </button>
+                        </form>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+</section>

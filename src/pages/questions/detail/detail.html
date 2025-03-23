@@ -1,0 +1,92 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>{{ $t("labels.users") }}</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">
+                        <router-link to="/"
+                            >{{ $t("labels.home") }}</router-link
+                        >
+                    </li>
+                    <li class="breadcrumb-item active">
+                        {{ $t("labels.questionDetail") }}
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Detail Soal</h3>
+                        <div class="ml-auto p-2">
+                            <a
+                                href="/question-add"
+                                class="btn btn-primary float-sm-right"
+                            >
+                                <i class="fas fa-book-open"></i> Tambah Soal
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table">
+                            <tr>
+                                <th>Pertanyaan</th>
+                                <td>{{ question.question }}</td>
+                            </tr>
+                            <tr>
+                                <th>Opsi Jawaban</th>
+                                <td>
+                                    <ul>
+                                        <li
+                                            v-for="(choice, index) in question.choices"
+                                            :key="index"
+                                        >
+                                            {{ choice }}
+                                            <span
+                                                class="badge badge-success"
+                                                v-if="choice === question.correct_answer"
+                                                >Benar</span
+                                            >
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Level</th>
+                                <td>{{ question.level }}</td>
+                            </tr>
+                            <tr>
+                                <th>Poin</th>
+                                <td>{{ question.point }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tipe</th>
+                                <td>{{ question.type }}</td>
+                            </tr>
+                        </table>
+                        <router-link to="/questions" class="btn btn-secondary"
+                            >Kembali</router-link
+                        >
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>

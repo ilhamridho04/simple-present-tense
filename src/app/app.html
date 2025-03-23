@@ -1,0 +1,16 @@
+<router-view v-if="!isAppLoading" />
+<div v-if="isAppLoading">
+    <div
+        class="preloader flex-column justify-content-center align-items-center"
+    >
+        <pf-image
+            src="assets/img/logo.png"
+            alt="AdminLTE Logo"
+            class="brand-image"
+            height="60"
+            width="60"
+            rounded
+            style="opacity: 0.8"
+        ></pf-image>
+    </div>
+</div>
