@@ -42,7 +42,6 @@ export const MENU = [
                 name: i18n.global.t('labels.userList'),
                 path: '/users'
             },
-
             {
                 name: i18n.global.t('labels.userAdd'),
                 path: '/user-add'
@@ -62,6 +61,16 @@ export const MENU = [
                 name: i18n.global.t('labels.questionAdd'),
                 path: '/question-add'
             }
+        ]
+    },
+    {
+        name: i18n.global.t('labels.game'),
+        icon: 'fa-gamepad',
+        children: [
+            {
+                name: i18n.global.t('labels.gameReportList'),
+                path: '/game-stats'
+            },
         ]
     }
 ];

@@ -51,7 +51,21 @@
         "questionList": "Question List",
         "questionDetail": "Question Detail",
         "questionEdit": "Question Edit",
-        "questionAdd": "Question Add"
+        "questionAdd": "Question Add",
+        "gameStatistics": "Game Statistics",
+        "game": "Game",
+        "gameList": "Game List",
+        "gameDetail": "Game Detail",
+        "gameEdit": "Game Edit",
+        "gameAdd": "Game Add",
+        "gamePlay": "Play Game",
+        "gameResult": "Game Result",
+        "gameSummary": "Game Summary",
+        "gameReport": "Game Report",
+        "gameReportList": "Report List",
+        "gameReportDetail": "Game Report Detail",
+        "gameReportEdit": "Game Report Edit",
+        "gameReportAdd": "Game Report Add"
     },
     "messages": {
         "retrieveNewPassword": "You forgot your password? Here you can easily retrieve a new password.",

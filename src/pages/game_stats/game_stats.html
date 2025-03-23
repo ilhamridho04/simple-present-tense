@@ -1,0 +1,82 @@
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>{{ $t("labels.gameReport") }}</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item">
+                        <router-link to="/"
+                            >{{ $t("labels.home") }}</router-link
+                        >
+                    </li>
+                    <li class="breadcrumb-item active">
+                        {{ $t("labels.gameReportList") }}
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Game Statistics</h3>
+                    </div>
+                    <div class="card-body">
+                        <div v-if="loading" class="text-center">
+                            <i class="fa fa-spinner fa-spin"></i> Memuat data...
+                        </div>
+                        <div v-else-if="error" class="alert alert-danger">
+                            {{ error }}
+                        </div>
+                        <div v-else>
+                            <table
+                                id="gameReportTable"
+                                class="table table-bordered table-striped"
+                            >
+                                <thead>
+                                    <tr>
+                                        <th>User ID</th>
+                                        <th>Levels Unlocked</th>
+                                        <th>Total Answered</th>
+                                        <th>Correct Answers</th>
+                                        <th>Points</th>
+                                        <th>Avg Points</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        v-for="(stat, index) in gameStats"
+                                        :key="index"
+                                    >
+                                        <td>{{ stat.id }}</td>
+                                        <td>{{ stat.levels_unlocked }}</td>
+                                        <td>{{ stat.total_answered }}</td>
+                                        <td>{{ stat.correct_answers }}</td>
+                                        <td>{{ stat.points }}</td>
+                                        <td>
+                                            {{ stat.avg_points.toFixed(2) }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>

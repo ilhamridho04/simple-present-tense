@@ -51,7 +51,21 @@
         "questionList": "Daftar Soal",
         "questionDetail": "Detail Soal",
         "questionEdit": "Edit Soal",
-        "questionAdd": "Tambah Soal"
+        "questionAdd": "Tambah Soal",
+        "gameStatistics": "Statistik Permainan",
+        "game": "Permainan",
+        "gameList": "Daftar Permainan",
+        "gameDetail": "Detail Permainan",
+        "gameEdit": "Edit Permainan",
+        "gameAdd": "Tambah Permainan",
+        "gamePlay": "Mainkan Permainan",
+        "gameResult": "Hasil Permainan",
+        "gameSummary": "Ringkasan Permainan",
+        "gameReport": "Laporan Permainan",
+        "gameReportList": "Laporan Permainan",
+        "gameReportDetail": "Detail Laporan Permainan",
+        "gameReportEdit": "Edit Laporan Permainan",
+        "gameReportAdd": "Tambah Laporan Permainan"
     },
     "messages": {
         "retrieveNewPassword": "Anda lupa kata sandi Anda? Di sini Anda dapat dengan mudah mendapatkan kata sandi baru.",
