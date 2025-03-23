@@ -1,5 +1,5 @@
 import { defineComponent, nextTick } from 'vue';
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import { db } from "@/firebase";
 import 'datatables.net-bs4';
 import 'datatables.net-responsive-bs4';
@@ -33,10 +33,23 @@ export default defineComponent({
         async fetchGameStats() {
             try {
                 const querySnapshot = await getDocs(collection(db, 'game_stats'));
-                this.gameStats = querySnapshot.docs.map((doc) => ({
+                const statsData = querySnapshot.docs.map((doc) => ({
                     id: doc.id,
                     ...doc.data()
                 }));
+
+                // Ambil nama user berdasarkan user_id dari `users` collection
+                const statsWithUsers = await Promise.all(statsData.map(async (stat) => {
+                    const userRef = doc(db, "profile", stat.id);
+                    const userSnap = await getDoc(userRef);
+                    if (userSnap.exists()) {
+                        return { ...stat, fullname: userSnap.data().fullname || "Unknown User" };
+                    } else {
+                        return { ...stat, fullname: "Unknown User" };
+                    }
+                }));
+
+                this.gameStats = statsWithUsers;
             } catch (err) {
                 console.error("Error fetching game stats:", err);
                 this.error = "Gagal mengambil data statistik game.";

@@ -44,7 +44,8 @@
                             >
                                 <thead>
                                     <tr>
-                                        <th>User ID</th>
+                                        <th>No</th>
+                                        <th>Nama User</th>
                                         <th>Levels Unlocked</th>
                                         <th>Total Answered</th>
                                         <th>Correct Answers</th>
@@ -57,7 +58,8 @@
                                         v-for="(stat, index) in gameStats"
                                         :key="index"
                                     >
-                                        <td>{{ stat.id }}</td>
+                                        <td>{{ index + 1 }}</td>
+                                        <td>{{ stat.fullname }}</td>
                                         <td>{{ stat.levels_unlocked }}</td>
                                         <td>{{ stat.total_answered }}</td>
                                         <td>{{ stat.correct_answers }}</td>
