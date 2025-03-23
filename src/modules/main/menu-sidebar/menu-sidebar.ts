@@ -1,11 +1,11 @@
-import { Component, Vue } from 'vue-facing-decorator';
+import {Component, Vue} from 'vue-facing-decorator';
 import MenuItem from '@/components/menu-item/menu-item.vue';
-import { Image } from '@profabric/vue-components';
+import {Image} from '@profabric/vue-components';
 import SidebarSearch from '@/components/sidebar-search/sidebar-search.vue';
-import { i18n } from '@/translation';
-import { IUser } from '@/types/user';
-import { toRaw } from 'vue';
-import { icon } from '@fortawesome/fontawesome-svg-core';
+import {i18n} from '@/translation';
+import {IUser} from '@/types/user';
+import {toRaw} from 'vue';
+import {icon} from '@fortawesome/fontawesome-svg-core';
 
 @Component({
     name: 'app-menu-sidebar',
@@ -70,7 +70,7 @@ export const MENU = [
             {
                 name: i18n.global.t('labels.gameReportList'),
                 path: '/game-stats'
-            },
+            }
         ]
     }
 ];

@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router';
 import store from '@/store/index';
 
 import Main from '@/modules/main/main.vue';
@@ -17,7 +17,7 @@ import Questions from '@/pages/questions/questions.vue';
 import QuestionsAdd from '@/pages/questions/add/add.vue';
 import QuestionDetail from '@/pages/questions/detail/detail.vue';
 import GameStats from '@/pages/game_stats/game_stats.vue';
-import { firebaseAuth } from '@/firebase';
+import {firebaseAuth} from '@/firebase';
 
 const routes: Array<RouteRecordRaw> = [
     {

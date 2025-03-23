@@ -1,6 +1,6 @@
-import { defineComponent, nextTick } from 'vue';
-import { collection, getDocs, doc, getDoc } from "firebase/firestore";
-import { db } from "@/firebase";
+import {defineComponent, nextTick} from 'vue';
+import {collection, getDocs, doc, getDoc} from 'firebase/firestore';
+import {db} from '@/firebase';
 import 'datatables.net-bs4';
 import 'datatables.net-responsive-bs4';
 import 'datatables.net-buttons-bs4';
@@ -32,27 +32,35 @@ export default defineComponent({
     methods: {
         async fetchGameStats() {
             try {
-                const querySnapshot = await getDocs(collection(db, 'game_stats'));
+                const querySnapshot = await getDocs(
+                    collection(db, 'game_stats')
+                );
                 const statsData = querySnapshot.docs.map((doc) => ({
                     id: doc.id,
                     ...doc.data()
                 }));
 
                 // Ambil nama user berdasarkan user_id dari `users` collection
-                const statsWithUsers = await Promise.all(statsData.map(async (stat) => {
-                    const userRef = doc(db, "profile", stat.id);
-                    const userSnap = await getDoc(userRef);
-                    if (userSnap.exists()) {
-                        return { ...stat, fullname: userSnap.data().fullname || "Unknown User" };
-                    } else {
-                        return { ...stat, fullname: "Unknown User" };
-                    }
-                }));
+                const statsWithUsers = await Promise.all(
+                    statsData.map(async (stat) => {
+                        const userRef = doc(db, 'profile', stat.id);
+                        const userSnap = await getDoc(userRef);
+                        if (userSnap.exists()) {
+                            return {
+                                ...stat,
+                                fullname:
+                                    userSnap.data().fullname || 'Unknown User'
+                            };
+                        } else {
+                            return {...stat, fullname: 'Unknown User'};
+                        }
+                    })
+                );
 
                 this.gameStats = statsWithUsers;
             } catch (err) {
-                console.error("Error fetching game stats:", err);
-                this.error = "Gagal mengambil data statistik game.";
+                console.error('Error fetching game stats:', err);
+                this.error = 'Gagal mengambil data statistik game.';
             } finally {
                 this.loading = false;
             }
@@ -60,24 +68,35 @@ export default defineComponent({
 
         initDataTable() {
             this.$nextTick(() => {
-                $("#gameReportTable").DataTable({
-                    responsive: true,
-                    autoWidth: false,
-                    destroy: true,
-                    lengthMenu: [10, 25, 50, 100],
-                    buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'colvis'],
-                    language: {
-                        search: "Cari:",
-                        lengthMenu: "Tampilkan _MENU_ data",
-                        info: "Menampilkan _START_ hingga _END_ dari _TOTAL_ data",
-                        paginate: {
-                            first: "Awal",
-                            last: "Akhir",
-                            next: "›",
-                            previous: "‹",
-                        },
-                    },
-                }).buttons().container().appendTo('#gameReportTable_wrapper .col-md-6:eq(0)');
+                $('#gameReportTable')
+                    .DataTable({
+                        responsive: true,
+                        autoWidth: false,
+                        destroy: true,
+                        lengthMenu: [10, 25, 50, 100],
+                        buttons: [
+                            'copy',
+                            'csv',
+                            'excel',
+                            'pdf',
+                            'print',
+                            'colvis'
+                        ],
+                        language: {
+                            search: 'Cari:',
+                            lengthMenu: 'Tampilkan _MENU_ data',
+                            info: 'Menampilkan _START_ hingga _END_ dari _TOTAL_ data',
+                            paginate: {
+                                first: 'Awal',
+                                last: 'Akhir',
+                                next: '›',
+                                previous: '‹'
+                            }
+                        }
+                    })
+                    .buttons()
+                    .container()
+                    .appendTo('#gameReportTable_wrapper .col-md-6:eq(0)');
             });
         }
     }

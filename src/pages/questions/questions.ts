@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue';
-import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
-import { db } from '@/firebase';
+import {defineComponent} from 'vue';
+import {collection, getDocs, doc, deleteDoc} from 'firebase/firestore';
+import {db} from '@/firebase';
 import 'datatables.net-bs4';
 import 'datatables.net-responsive-bs4';
 import 'datatables.net-buttons-bs4';
@@ -34,29 +34,40 @@ export default defineComponent({
         },
         initDataTable() {
             this.$nextTick(() => {
-                $('#questionsTable').DataTable({
-                    responsive: true,
-                    destroy: true, // Hapus DataTable sebelum inisialisasi ulang
-                    lengthMenu: [10, 25, 50, 100],
-                    buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'colvis'],
-                    language: {
-                        search: "Cari:",
-                        lengthMenu: "Tampilkan _MENU_ data",
-                        info: "Menampilkan _START_ hingga _END_ dari _TOTAL_ data",
-                        paginate: {
-                            first: "Awal",
-                            last: "Akhir",
-                            next: "›",
-                            previous: "‹",
-                        },
-                    },
-                }).buttons().container().appendTo('#questionsTable_wrapper .col-md-6:eq(0)');
+                $('#questionsTable')
+                    .DataTable({
+                        responsive: true,
+                        destroy: true, // Hapus DataTable sebelum inisialisasi ulang
+                        lengthMenu: [10, 25, 50, 100],
+                        buttons: [
+                            'copy',
+                            'csv',
+                            'excel',
+                            'pdf',
+                            'print',
+                            'colvis'
+                        ],
+                        language: {
+                            search: 'Cari:',
+                            lengthMenu: 'Tampilkan _MENU_ data',
+                            info: 'Menampilkan _START_ hingga _END_ dari _TOTAL_ data',
+                            paginate: {
+                                first: 'Awal',
+                                last: 'Akhir',
+                                next: '›',
+                                previous: '‹'
+                            }
+                        }
+                    })
+                    .buttons()
+                    .container()
+                    .appendTo('#questionsTable_wrapper .col-md-6:eq(0)');
             });
         },
         viewQuestionDetail(questionId: string) {
             this.$router.push({
                 name: 'question-detail',
-                params: { id: questionId }
+                params: {id: questionId}
             });
         },
         async deleteQuestion(questionId: string) {
