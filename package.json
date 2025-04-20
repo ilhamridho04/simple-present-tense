@@ -70,7 +70,7 @@
         "sass": "1.77.2",
         "standard-version": "9.5.0",
         "typescript": "~5.4.5",
-        "vite": "5.4.14",
+        "vite": "5.4.18",
         "vue-jest": "3.0.7"
     }
 }
